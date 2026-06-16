@@ -349,6 +349,23 @@
         </div>
     </label>
   </div>
+  {% for agg in uf_aggregators %}
+  <div class="ol-12 form-check">
+    <input type="checkbox" class="form-check-input me-1" name="{{ agg[0] }}--is_enabled" id="{{ agg[0] }}--is_enabled"
+           {{ uf_enabled(agg[0], m) }} />
+    <label class="mx-1 w-auto" for="{{ agg[0] }}--is_enabled">
+      <a href={{ agg[2] }}>{{ agg[1] }}</a> <a href="TODO PRIVACY LINK" title="Privacy Policy" style="font-size: 0.8em;">{{ agg[4] }}</a>
+      <div class="form-group" id="{{ agg[0] }}_fields">
+        <label for="ultrafeeder--{{ agg[0] }}--uuid">
+          no description
+        </label>
+        <input type="text" id="ultrafeeder--{{ agg[0] }}--uuid" name="ultrafeeder--{{ agg[0] }}--uuid" class="form-control w-75"
+            {{ uf_enabled(agg[0], m) | replace("checked", "required" ) }} placeholder=" {{ agg[1] }} UUID"
+            value="{{ list_value_by_tags(["ultrafeeder", agg[0], "uuid"], m) }}">
+      </div>
+    </label>
+  </div>
+  {% endfor %}
   <hr>
   {% endif %}
   <!-- end of the ADS-B section -->
